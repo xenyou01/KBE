@@ -1,0 +1,2 @@
+INDEX VERSION 1.127+D:\HTW\5. Semester\KBE\kbeWS17KBE\.metadata\.plugins\org.eclipse.jdt.core
+3982743458.index
