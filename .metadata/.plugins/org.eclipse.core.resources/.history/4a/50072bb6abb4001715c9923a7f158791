@@ -1,0 +1,37 @@
+package de.htwberlin.ai.kbe.EmailChecker;
+
+import org.junit.Test;
+
+public class MyEmailSyntaxCheckerTest {
+	
+	@Test
+	public void nullEmailShouldReturnFalse {
+		
+	}
+	
+	@Test
+	public void emptyEmailShouldReturnFalse {
+		
+	}
+	
+	@Test
+	public void noAtSignsShouldReturnFalse {
+		
+	}
+	
+	@Test
+	public void noDomainShouldReturnFalse {
+		
+	}
+	
+	@Test
+	public void whitespaceInEmailShouldReturnFalse {
+		
+	}
+	
+	@Test
+	public void validEmailShouldReturnTrue {
+		
+	}
+
+}
