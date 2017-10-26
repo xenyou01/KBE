@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="org.junit.Assert"/>
+<fullyQualifiedTypeName name="org.junit.Before"/>
+<fullyQualifiedTypeName name="de.htwberlin.ai.kbe.EmailChecker.MyEmailSyntaxCheckerTest"/>
+<fullyQualifiedTypeName name="de.htwberlin.ai.kbe.EmailChecker.MyEmailSyntaxChecker"/>
+<fullyQualifiedTypeName name="javax.mail.internet.InternetAddress"/>
+<fullyQualifiedTypeName name="javax.mail.internet.AddressException"/>
+</qualifiedTypeNameHistroy>
