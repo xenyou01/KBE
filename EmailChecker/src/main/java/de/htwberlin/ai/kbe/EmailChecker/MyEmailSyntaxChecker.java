@@ -11,5 +11,4 @@ public class MyEmailSyntaxChecker {
 		java.util.regex.Matcher m = p.matcher(email);
 		return m.matches();
 	}
-
 }
