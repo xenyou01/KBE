@@ -13,13 +13,22 @@ public class PropertyUtility {
 	public static Properties readConfigFile(String filename) throws FileNotFoundException, IOException{
 		Properties result = new Properties();
 		File configFile = new File(filename);
-		FileInputStream fileInputStream = new FileInputStream(configFile);
-		BufferedReader buReader = new BufferedReader(new InputStreamReader(fileInputStream));
+		FileInputStream fileInputStream = null;
+		BufferedReader buReader = null;
 		String propertyKeyValue;
-		while((propertyKeyValue = buReader.readLine()) != null){
-			String key = propertyKeyValue.substring(0, propertyKeyValue.indexOf('='));
-			String value = propertyKeyValue.substring(propertyKeyValue.indexOf('=') + 1, propertyKeyValue.length());
-			result.setProperty(key, value);
+		try{
+			fileInputStream = new FileInputStream(configFile);
+			buReader = new BufferedReader(new InputStreamReader(fileInputStream));
+			
+			while((propertyKeyValue = buReader.readLine()) != null){
+				String key = propertyKeyValue.substring(0, propertyKeyValue.indexOf('='));
+				String value = propertyKeyValue.substring(propertyKeyValue.indexOf('=') + 1, propertyKeyValue.length());
+				result.setProperty(key, value);
+			}
+		}finally {
+			if(fileInputStream != null){
+				fileInputStream.close();
+			}
 		}
 		return result;
 	}
