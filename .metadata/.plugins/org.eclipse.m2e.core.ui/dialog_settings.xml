@@ -44,6 +44,7 @@
 	</section>
 	<section name="MavenProjectWizardLocationPage">
 		<list key="location">
+			<item value="D:\HTW\5. Semester\KBE\kbeWS17KBE\EmailChecker"/>
 		</list>
 		<list key="projectNameTemplate">
 			<item value="[artifactId]"/>
@@ -56,12 +57,14 @@
 	</section>
 	<section name="Maven2ProjectWizardArchifactPage">
 		<list key="package">
+			<item value="de.htwberlin.ai.kbe.runMeRunner"/>
 			<item value="de.htwberlin.ai.kbe.EmailChecker"/>
 		</list>
 		<list key="groupId">
 			<item value="de.htwberlin.ai.kbe"/>
 		</list>
 		<list key="artifactId">
+			<item value="runMeRunner"/>
 			<item value="EmailChecker"/>
 		</list>
 		<list key="projectNameTemplate">

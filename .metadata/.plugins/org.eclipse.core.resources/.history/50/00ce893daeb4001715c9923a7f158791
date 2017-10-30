@@ -1,5 +1,0 @@
-package de.htwberlin.ai.kbe.EmailChecker;
-
-public class ExternalEmailSyntaxChecker {
-
-}

@@ -6,4 +6,12 @@
 <fullyQualifiedTypeName name="de.htwberlin.ai.kbe.EmailChecker.MyEmailSyntaxChecker"/>
 <fullyQualifiedTypeName name="javax.mail.internet.InternetAddress"/>
 <fullyQualifiedTypeName name="javax.mail.internet.AddressException"/>
+<fullyQualifiedTypeName name="java.lang.annotation.Retention"/>
+<fullyQualifiedTypeName name="java.lang.annotation.RetentionPolicy"/>
+<fullyQualifiedTypeName name="java.lang.annotation.Target"/>
+<fullyQualifiedTypeName name="java.lang.annotation.ElementType"/>
+<fullyQualifiedTypeName name="java.lang.String"/>
+<fullyQualifiedTypeName name="de.htwberlin.ai.kbe.EmailChecker.ExternalEmailSyntaxChecker"/>
+<fullyQualifiedTypeName name="de.htwberlin.ai.kbe.runMeRunner.RunMe"/>
+<fullyQualifiedTypeName name="java.lang.Class"/>
 </qualifiedTypeNameHistroy>
