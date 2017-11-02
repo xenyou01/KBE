@@ -10,10 +10,6 @@ import java.util.Properties;
 
 public class PropertyUtility {
 	
-<<<<<<< HEAD
-	
-	
-=======
 	public static Properties readConfigFile(String filename) throws FileNotFoundException, IOException{
 		Properties result = new Properties();
 		File configFile = new File(filename);
@@ -36,6 +32,5 @@ public class PropertyUtility {
 		}
 		return result;
 	}
->>>>>>> 6f82971a6e2de6dc04a21962922ab679b8dca9bc
 
 }
