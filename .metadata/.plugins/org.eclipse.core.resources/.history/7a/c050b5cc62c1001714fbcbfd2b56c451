@@ -48,7 +48,7 @@ public class PropertyUtilityTest {
 	}
 	
 	@Test(expected = IndexOutOfBoundsException.class) 
-	public void nonExistingPropertyInPropertyFileShouldThrowIndexOutOfBoundsException() throws FileNotFoundException, IOException {
+	public void nonExistingClassInPropertyFileShouldThrowClassNotFoundException() throws FileNotFoundException, IOException {
 		String filename = "runMeConfigWithoutProperties.properties";
 		pUtility.readConfigFile(filename);
 	}	
