@@ -1,0 +1,29 @@
+package de.htwberlin.ai.kbe.runMeRunner;
+
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+import java.util.Properties;
+
+import de.htwberlin.ai.kbe.EmailChecker.ExternalEmailSyntaxChecker;
+
+public class PropertyUtilityTest {
+	
+	PropertyUtility pUtility;
+	
+	@Before
+	public void initialize()
+	{
+		pUtility = new PropertyUtility();		
+		Properties properties = new Properties();
+	}
+	
+	@Test
+	public void correctFileParameterShouldReturnProperty() {
+		String filename = "runMeConfig.properties";
+		String stringProperties = "{classWithRunMeAnnos=de.htwberlin.ai.kbe.runMeRunner.RunMeClass}";
+		Assert.assertTrue(1 == 1);
+	}
+	
+
+}

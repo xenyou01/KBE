@@ -7,14 +7,14 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Properties;
 
-<<<<<<< HEAD
-	public static void main(String[] args) throws ClassNotFoundException {
-		
-		String Anoname = System.getProperty("classWithRunMeAnnos", "de.htwberlin.ai.kbe.runMeRunner.RunMeClass");
-		Class<?> clazz = Class.forName(Anoname);
-=======
+//<<<<<<< HEAD
+//	public static void main(String[] args) throws ClassNotFoundException {
+//		
+//		String Anoname = System.getProperty("classWithRunMeAnnos", "de.htwberlin.ai.kbe.runMeRunner.RunMeClass");
+//		Class<?> clazz = Class.forName(Anoname);
+//=======
 public class MethodRunner {
->>>>>>> 6f82971a6e2de6dc04a21962922ab679b8dca9bc
+//>>>>>>> 6f82971a6e2de6dc04a21962922ab679b8dca9bc
 
 	public static void main(String[] args) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, InstantiationException {
 		String runmeString;

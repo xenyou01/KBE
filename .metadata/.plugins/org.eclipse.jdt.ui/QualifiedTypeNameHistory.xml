@@ -14,4 +14,7 @@
 <fullyQualifiedTypeName name="de.htwberlin.ai.kbe.EmailChecker.ExternalEmailSyntaxChecker"/>
 <fullyQualifiedTypeName name="de.htwberlin.ai.kbe.runMeRunner.RunMe"/>
 <fullyQualifiedTypeName name="java.lang.Class"/>
+<fullyQualifiedTypeName name="de.htwberlin.ai.kbe.runMeRunner.PropertyUtility"/>
+<fullyQualifiedTypeName name="java.util.Properties"/>
+<fullyQualifiedTypeName name="java.lang.IndexOutOfBoundsException"/>
 </qualifiedTypeNameHistroy>

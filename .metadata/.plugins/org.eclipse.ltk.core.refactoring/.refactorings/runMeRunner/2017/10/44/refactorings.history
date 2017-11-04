@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;runMeRunner/runMeConfigWithFakeClass.properties&apos; to &apos;runMeConfigWithoutProperties.properties&apos;" description="Rename resource &apos;runMeConfigWithFakeClass.properties&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="runMeConfigWithFakeClass.properties" name="runMeConfigWithoutProperties.properties" stamp="1509357663799" updateReferences="true"/>
+</session>
