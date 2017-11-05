@@ -1,4 +1,4 @@
-//<<<<<<< HEAD
+
 package de.htwberlin.ai.kbe.runMeRunner;
 
 import org.junit.Assert;
@@ -10,13 +10,6 @@ import java.io.IOException;
 import java.util.Properties;
 
 import de.htwberlin.ai.kbe.EmailChecker.ExternalEmailSyntaxChecker;
-
-//=======
-//package de.htwberlin.ai.kbe.runMeRunner;
-
-import static org.junit.Assert.*;
-
-import org.junit.Test;
 
 public class PropertyUtilityTest {
 	
@@ -54,4 +47,3 @@ public class PropertyUtilityTest {
 	}	
 
 }
-//>>>>>>> d3aa9a91e4215580329e7c3d07aa2472d7331d9c
