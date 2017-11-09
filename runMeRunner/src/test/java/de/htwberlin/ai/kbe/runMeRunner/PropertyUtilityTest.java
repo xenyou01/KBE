@@ -45,5 +45,9 @@ public class PropertyUtilityTest {
 		String filename = "runMeConfigWithoutProperties.properties";
 		pUtility.readConfigFile(filename);
 	}	
-
+	
+	@Test(expected= NullPointerException.class)
+	public void nullFilenameshouldThrowNullPointerException() throws FileNotFoundException, IOException{
+		PropertyUtility.readConfigFile(null);
+	}
 }

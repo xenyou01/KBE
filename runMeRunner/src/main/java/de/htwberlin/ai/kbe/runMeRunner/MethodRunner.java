@@ -9,7 +9,7 @@ import java.util.Properties;
 
 public class MethodRunner {
 
-	public static void main(String[] args) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, InstantiationException {
+	public static void main(String[] args) throws IllegalAccessException, IllegalArgumentException, InstantiationException {
 		String runmeString;
 		Class<?> runMeClass;
 		if(args.length == 0){
@@ -45,8 +45,15 @@ public class MethodRunner {
 		Method[] methods = runMeClass.getDeclaredMethods();
 		for(Method method : methods){
 			if(method.isAnnotationPresent(RunMe.class)){
-				RunMe runmeAnno = method.getAnnotation(RunMe.class);
-				method.invoke(runMeClass.newInstance(), runmeAnno.input());
+				try {
+					RunMe runmeAnno = method.getAnnotation(RunMe.class);
+					method.invoke(runMeClass.newInstance(), runmeAnno.input());
+				} catch (InvocationTargetException e) {
+					System.out.println(">>>>>>> Invocation Exception");
+					continue;
+				} catch (Exception e) {
+					continue;
+				}
 			}
 		}
 	}
