@@ -28,16 +28,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.io.IOUtils;
+import org.omg.CORBA.RepositoryIdHelper;
 
 import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @WebServlet(
 	name = "SongsServlet", 
-	urlPatterns = "/songWebStore",
+	urlPatterns = "/*",
 			initParams = {
 					@WebInitParam(name = "signature", 
 					    value = "Thanks for using AI-KBE's Song Webstore © 2017! ")
@@ -64,7 +66,7 @@ public class SongsStoreServlet extends HttpServlet {
 	public void init(ServletConfig servletConfig) throws ServletException {
 		
 		this.mySignature = servletConfig.getInitParameter("signature");
-		objectMapper = new ObjectMapper();
+		objectMapper = new ObjectMapper().enable(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY);
 		songFilename = "songs.json";
 		songStore = new ConcurrentHashMap<>();
 		InputStream input = this.getClass().getClassLoader().getResourceAsStream(songFilename);
@@ -87,68 +89,104 @@ public class SongsStoreServlet extends HttpServlet {
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		Map<String,String[]> parameter = request.getParameterMap();
-		if(parameter.containsKey("all")){
-			response.setContentType(APPLICATION_JSON);
-			response.setStatus(200);
-			objectMapper.writerWithDefaultPrettyPrinter().writeValue(response.getOutputStream(), songStore.values());
-			response.getOutputStream().println("\n"+mySignature);
-		}
-		else if(parameter.containsKey("songId")){
-			String[] ids = parameter.get("songId");
-			List<Integer> idsCast = new ArrayList<>();
-			for(String id : ids){
-				try {
-					Integer idNumber = new Integer(id);
-					idsCast.add(idNumber);
-				} catch (NumberFormatException e) {
-					continue;
+		try {
+			if(parameter.containsKey("all")){
+				response.setContentType(APPLICATION_JSON);
+				response.setStatus(200);
+				objectMapper.writerWithDefaultPrettyPrinter().writeValue(response.getOutputStream(), songStore.values());
+				response.getOutputStream().println("\n"+mySignature);
+			}
+			else if(parameter.containsKey("songId")){
+				String[] ids = parameter.get("songId");
+				List<Integer> idsCast = new ArrayList<>();
+				for(String id : ids){
+					try {
+						Integer idNumber = new Integer(id);
+						idsCast.add(idNumber);
+					} catch (NumberFormatException e) {
+						continue;
+					}
 				}
-			}
-			if(idsCast.size() == 0){
-				response.setStatus(400);
-				response.setContentType(TEXT_PLAIN);
-				response.getOutputStream().println("The specified Id(s) could'nt be read");
-				return;
-			}
-			List<Song> songWithGivenId = new ArrayList<>();
-			for(Integer id : idsCast){
-				Song song;
-				if((song = songStore.get(id)) != null){
-					songWithGivenId.add(song);
+				if(idsCast.size() == 0){
+					sendResponse(response, 400, TEXT_PLAIN, "The specified Id(s) could'nt be read");
+					return;
 				}
+				List<Song> songWithGivenId = new ArrayList<>();
+				for(Integer id : idsCast){
+					Song song;
+					if((song = songStore.get(id)) != null){
+						songWithGivenId.add(song);
+					}
+				}
+				if(songWithGivenId.size() == 0){
+					sendResponse(response, 400, TEXT_PLAIN, "No song with the given id(s)");
+					return;
+				}
+				response.setContentType(APPLICATION_JSON);
+				int status = songWithGivenId.size() == ids.length  ? 200 : 206;
+				response.setStatus(status);
+				objectMapper.writerWithDefaultPrettyPrinter().writeValue(response.getOutputStream(), songWithGivenId);
 			}
-			if(songWithGivenId.size() == 0){
-				response.setStatus(400);
-				response.setContentType(TEXT_PLAIN);
-				response.getOutputStream().println("No song with the given id(s)");
-				return;
+			else{
+				sendResponse(response, 400, TEXT_PLAIN, "Please check the parameters!");
 			}
-			response.setContentType(APPLICATION_JSON);
-			int status = songWithGivenId.size() == ids.length  ? 200 : 206;
-			response.setStatus(status);
-			objectMapper.writerWithDefaultPrettyPrinter().writeValue(response.getOutputStream(), songWithGivenId);
-		}
-		else{
-			response.setContentType(TEXT_PLAIN);
-			response.setStatus(400);
-			response.getOutputStream().println("Please check the parameters!");
-			response.getOutputStream().println(mySignature);
+		} catch (JsonGenerationException e) {
+			sendResponse(response, 500, TEXT_PLAIN, "Internal Server ERROR");
+		} catch (JsonMappingException e) {
+			sendResponse(response, 500, TEXT_PLAIN, "Internal Server ERROR");
+		} catch (IOException e) {
+			sendResponse(response, 500, TEXT_PLAIN, "Internal Server ERROR");
 		}
 		
 	}
 
 	
-//	@Override
-//	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-//	}
+	@SuppressWarnings("unchecked")
+	@Override
+	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		List<Song> songList;
+		String payload = "";
+		try {
+				songList = (List<Song>) objectMapper.readValue(request.getInputStream(), new TypeReference<List<Song>>(){});
+				for(Song song : songList){
+					if(song.getTitle() == null || song.getArtist() == null || song.getAlbum() == null  || song.getReleased() == null){
+						sendResponse(response, 400, TEXT_PLAIN, "One or more of the given had one or more missing informations. Please check if you passed all necessary Informations");
+						return;
+					}
+		    	}
+				for(Song song : songList){
+					if(songStore.containsValue(song))
+						continue;
+					song.setId(currentID.get() + 1);
+					currentID.set(currentID.get() +1 );
+					songStore.put(song.getId(), song);
+					payload +="Added song '" + song.getTitle() + "', id=" + song.getId() + "\n";
+				}
+			if(payload.equals(""))
+				sendResponse(response, 400, TEXT_PLAIN, "The song already exist!");
+			else
+				sendResponse(response, 201, TEXT_PLAIN, payload);
+		} catch (IOException e) {
+			sendResponse(response, 500, TEXT_PLAIN, "Internal ERROR, Error Code: 2307");
+		}
+	}
 	
-//	@Override
-//	public void doPut(HttpServletRequest request, HttpServletResponse response) throws IOException {
-//	}	
+	@Override
+	public void doPut(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		sendResponse(response, 403, TEXT_PLAIN, "You should not use this method yet");
+	}	
 	
-//	@Override
-//	public void doDelete(HttpServletRequest request, HttpServletResponse response) throws IOException {
-//	}
+	@Override
+	public void doDelete(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		sendResponse(response, 403, TEXT_PLAIN, "Sorry, you can't delete a ressource");
+	}
+	
+	public void sendResponse(HttpServletResponse response, int status, String contentType, String body) throws IOException{
+		response.setContentType(contentType);
+		response.setStatus(status);
+		response.getOutputStream().println(body);
+		response.getOutputStream().println(mySignature);
+	}
 	
 	// save songStore to file
 	@Override

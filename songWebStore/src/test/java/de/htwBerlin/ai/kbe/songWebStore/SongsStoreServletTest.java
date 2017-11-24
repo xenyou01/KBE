@@ -84,13 +84,18 @@ public class SongsStoreServletTest {
 		AtomicInteger currentID;
 		try {
 			List<Song> songList = (List<Song>) objectMapper.readValue(input, new TypeReference<List<Song>>(){});
-			currentID = new AtomicInteger(songList.get(0).getId());
+			currentID = new AtomicInteger(-1);
 			for(Song song : songList){
+				if(song.getId() == null){
+					System.out.println("JA!");
+					song.setId(10);
+				}
 	    		songStore.put(new AtomicInteger(song.getId()), song);
 	    		if(currentID.get() < song.getId())
 	    			currentID.set(song.getId());
 	    	}
 			System.out.println(currentID);
+			objectMapper.writerWithDefaultPrettyPrinter().writeValue(System.out, songList);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
