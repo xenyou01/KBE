@@ -42,7 +42,7 @@ public class Song {
 		return released;
 	}
 	
-	@Override
+	/*@Override
 	public boolean equals(Object other)
 	{
 		if(this == other)
@@ -61,5 +61,5 @@ public class Song {
 	public int hashCode()
 	{
 		return 31 + (int) (this.id ^ (this.id >>> 32));
-	}
+	}*/
 }

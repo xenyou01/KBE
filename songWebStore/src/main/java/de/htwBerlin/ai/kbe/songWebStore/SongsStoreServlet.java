@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -80,8 +81,15 @@ public class SongsStoreServlet extends HttpServlet {
 	    			currentID.set(song.getId().intValue());
 	    	}
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		}finally {
+			if(songStore.size() == 0){
+				currentID = new AtomicInteger(1);
+			}
+			if(input != null)
+				try {
+					input.close();
+				} catch (IOException e) {
+				}
 		}
 	}
 
@@ -102,6 +110,9 @@ public class SongsStoreServlet extends HttpServlet {
 				for(String id : ids){
 					try {
 						Integer idNumber = new Integer(id);
+						if(idsCast.contains(idNumber)){
+							continue;
+						}
 						idsCast.add(idNumber);
 					} catch (NumberFormatException e) {
 						continue;
@@ -155,19 +166,14 @@ public class SongsStoreServlet extends HttpServlet {
 					}
 		    	}
 				for(Song song : songList){
-					if(songStore.containsValue(song))
-						continue;
 					song.setId(currentID.get() + 1);
 					currentID.set(currentID.get() +1 );
 					songStore.put(song.getId(), song);
 					payload +="Added song '" + song.getTitle() + "', id=" + song.getId() + "\n";
 				}
-			if(payload.equals(""))
-				sendResponse(response, 400, TEXT_PLAIN, "The song already exist!");
-			else
 				sendResponse(response, 201, TEXT_PLAIN, payload);
 		} catch (IOException e) {
-			sendResponse(response, 500, TEXT_PLAIN, "Internal ERROR, Error Code: 2307");
+			sendResponse(response, 500, TEXT_PLAIN, "Sorry, but I couldn't parse your payload");
 		}
 	}
 	
@@ -191,6 +197,10 @@ public class SongsStoreServlet extends HttpServlet {
 	// save songStore to file
 	@Override
 	public void destroy() {
-		System.out.println("In destroy");
+		try {
+			
+			objectMapper.writerWithDefaultPrettyPrinter().writeValue(new FileOutputStream(songFilename), songStore.values());
+		} catch (IOException e) {
+		}
 	}
 }
