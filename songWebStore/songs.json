@@ -58,10 +58,4 @@
   "artist" : "Lukas Graham",
   "album" : "Lukas Graham (Blue Album)",
   "released" : 2015
-}, {
-  "id" : 11,
-  "title" : "a new title",
-  "artist" : "YOU",
-  "album" : "First Album",
-  "released" : 2017
 } ]

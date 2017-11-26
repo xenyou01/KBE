@@ -37,13 +37,15 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 
 @WebServlet(
 	name = "SongsServlet", 
 	urlPatterns = "/*",
 			initParams = {
 					@WebInitParam(name = "signature", 
-					    value = "Thanks for using AI-KBE's Song Webstore © 2017! ")
+					    value = "Thanks for using AI-KBE's Song Webstore © 2017! "),
+					@WebInitParam(name = "songFilename", value = "songs.json")
 			}
 )
 public class SongsStoreServlet extends HttpServlet {
@@ -62,13 +64,13 @@ public class SongsStoreServlet extends HttpServlet {
     
     private AtomicInteger currentID = null;
     private ObjectMapper objectMapper = null;
-
+    
 	// load songStore from JSON file and set currentID
 	public void init(ServletConfig servletConfig) throws ServletException {
 		
 		this.mySignature = servletConfig.getInitParameter("signature");
-		objectMapper = new ObjectMapper().enable(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY);
-		songFilename = "songs.json";
+		this.songFilename = servletConfig.getInitParameter("songFilename");
+		objectMapper = new ObjectMapper().enable(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY).enable(SerializationFeature.WRITE_SINGLE_ELEM_ARRAYS_UNWRAPPED);
 		songStore = new ConcurrentHashMap<>();
 		InputStream input = this.getClass().getClassLoader().getResourceAsStream(songFilename);
 		
@@ -197,10 +199,5 @@ public class SongsStoreServlet extends HttpServlet {
 	// save songStore to file
 	@Override
 	public void destroy() {
-		try {
-			
-			objectMapper.writerWithDefaultPrettyPrinter().writeValue(new FileOutputStream(songFilename), songStore.values());
-		} catch (IOException e) {
-		}
 	}
 }
