@@ -1,5 +1,6 @@
 package de.htwBerlin.ai.kbe.songWebStore;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -199,5 +200,10 @@ public class SongsStoreServlet extends HttpServlet {
 	// save songStore to file
 	@Override
 	public void destroy() {
+		try {
+			FileOutputStream fos =new FileOutputStream(new File(this.getClass().getClassLoader().getResource(songFilename).getPath()));
+			objectMapper.writerWithDefaultPrettyPrinter().writeValue(fos, songStore.values());
+		} catch (IOException e) {
+		}
 	}
 }

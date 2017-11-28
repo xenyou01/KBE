@@ -5,9 +5,11 @@ import static org.junit.Assert.assertTrue;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
@@ -49,7 +51,7 @@ public class SongsStoreServletTest {
     		config.addInitParameter("songFilename", "songs.json");
     }
     
-    @SuppressWarnings("unchecked")
+    /*@SuppressWarnings("unchecked")
 	@Test
     public void playingWithJackson() throws IOException {
 	    // songs.json and testSongs.json contain songs from this Top-10:
@@ -152,5 +154,13 @@ public class SongsStoreServletTest {
     public void doPutShouldReturnForbiddenCode() throws IOException {
     	servlet.doPut(request, response);
     	assertEquals(response.getStatus(), 403);
+    }*/
+    
+    @Test
+    public void play() throws FileNotFoundException, URISyntaxException
+    {
+    	//InputStream input = this.getClass().getClassLoader().getResourceAsStream("testSongs.json");
+    	//System.out.println(this.getClass().getClassLoader().getResource("testSongs.json").toURI());
+    	FileOutputStream fos =new FileOutputStream(new File(this.getClass().getClassLoader().getResource("testSongs.json").getPath()));
     }
 }
