@@ -116,15 +116,35 @@ public class SongsStoreServletTest {
     	assertEquals(response.getStatus(), 201);
     }
     
-    @Test
-    public void doDeleteShouldReturnForbiddenCode() throws IOException {
-    	servlet.doDelete(request, response);
-    	assertEquals(response.getStatus(), 403);
-    }
+//    @Test
+//    public void doDeleteShouldReturnForbiddenCode() throws IOException {
+//    	servlet.doDelete(request, response);
+//    	assertEquals(response.getStatus(), 403);
+//    }
     
-    @Test
+    /*@Test
     public void doPutShouldReturnForbiddenCode() throws IOException {
     	servlet.doPut(request, response);
     	assertEquals(response.getStatus(), 403);
+    }*/
+    
+    @Test
+    public void doDeleteshouldremoveSongWithTheGivenId() throws IOException, ServletException{
+    	servlet.init(config);
+    	request.addParameter("songId", "6");
+    	request.setContentType(MediaType.TEXT_PLAIN_VALUE);
+    	servlet.doDelete(request, response);
+    	servlet.doGet(request, response);
+    	assertEquals(response.getStatus(), 400);
+    }
+    
+    @Test
+    public void doPutshouldOverrideSongWithGivenId() throws IOException, ServletException{
+    	servlet.init(config);
+    	request.setContentType(MediaType.APPLICATION_JSON_VALUE);
+    	Song song = new Song (4, "New Title", "artistXX", "albumXX", 1999);
+    	request.setContent(objectMapper.writeValueAsBytes(song));
+    	servlet.doPut(request, response);
+    	assertEquals(response.getStatus(), 200);
     }
 }

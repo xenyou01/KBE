@@ -182,12 +182,79 @@ public class SongsStoreServlet extends HttpServlet {
 	
 	@Override
 	public void doPut(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		sendResponse(response, 403, TEXT_PLAIN, "You should not use this method yet");
+		List<Song> songList;
+		String payload = "";
+		try {
+			songList = (List<Song>) objectMapper.readValue(request.getInputStream(), new TypeReference<List<Song>>(){});
+			for(Song song : songList){
+				if(song.getId() == null || song.getTitle() == null || song.getArtist() == null || song.getAlbum() == null  || song.getReleased() == null){
+					sendResponse(response, 400, TEXT_PLAIN, "One or more of the given had one or more missing informations. Please check if you passed all necessary Informations");
+					return;
+				}
+				if(songStore.get(song.getId()) == null){
+					payload += "No song with the id " + song.getId().intValue() + "\n";
+				}
+				else{
+					songStore.replace(song.getId(), song);
+					payload += "overrided song with id " + song.getId() + "\n";
+				}
+			}
+			sendResponse(response, 200, TEXT_PLAIN, payload);
+		} catch (IOException e) {
+			sendResponse(response, 500, TEXT_PLAIN, "Internal Server ERROR");
+		}
 	}	
 	
 	@Override
 	public void doDelete(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		sendResponse(response, 403, TEXT_PLAIN, "Sorry, you can't delete a ressource");
+		Map<String,String[]> parameter = request.getParameterMap();
+		String payload = "";
+		try {
+			if(parameter.containsKey("songId")){
+				String[] ids = parameter.get("songId");
+				List<Integer> idsCast = new ArrayList<>();
+				for(String id : ids){
+					try {
+						Integer idNumber = new Integer(id);
+						if(idsCast.contains(idNumber) || idNumber.intValue() == 0){
+							continue;
+						}
+						idsCast.add(idNumber);
+					} catch (NumberFormatException e) {
+						continue;
+					}
+				}
+				if(idsCast.size() == 0){
+					sendResponse(response, 400, TEXT_PLAIN, "The specified Id(s) could'nt be read");
+					return;
+				}
+				int songWithGivenId = 0;
+				for(Integer id : idsCast){
+					Song song;
+					if((song =songStore.remove(id)) != null){
+						songWithGivenId++;
+						payload += "removed song \"" + song.getTitle() + "\"\n";
+						continue;
+					}
+					payload += "No song with the id " + id + "\n";
+				}
+				if(songWithGivenId == 0){
+					sendResponse(response, 400, TEXT_PLAIN, "No song with the given id(s)");
+					return;
+				}
+				int status = songWithGivenId == ids.length  ? 200 : 206;
+				sendResponse(response, status, TEXT_PLAIN, payload);
+			}
+			else{
+				sendResponse(response, 400, TEXT_PLAIN, "Please check the parameters!");
+			}
+		} catch (JsonGenerationException e) {
+			sendResponse(response, 500, TEXT_PLAIN, "Internal Server ERROR");
+		} catch (JsonMappingException e) {
+			sendResponse(response, 500, TEXT_PLAIN, "Internal Server ERROR");
+		} catch (IOException e) {
+			sendResponse(response, 500, TEXT_PLAIN, "Internal Server ERROR");
+		}
 	}
 	
 	public void sendResponse(HttpServletResponse response, int status, String contentType, String body) throws IOException{
