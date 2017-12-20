@@ -35,7 +35,7 @@ public class SongWebServiceTest extends JerseyTest {
 	
 	@Test
     public void testPutWithUnknownSongIdShouldReturn404(){
-		Song song = new Song();		
+		Song song = new Song.Builder(777, "New Title").build();		
         Response output = target("/songs/777")
         		.request()
         		.put(Entity.entity(song, MediaType.APPLICATION_JSON));;
@@ -44,7 +44,7 @@ public class SongWebServiceTest extends JerseyTest {
 	
 	@Test
     public void testPutWithKnownSongIdShouldReturn204(){
-		Song song = new Song();
+		Song song = new Song.Builder(10, "New Title").build();
 		 Response output = target("/songs/10")
 	        		.request()
 	        		.put(Entity.entity(song, MediaType.APPLICATION_JSON));;

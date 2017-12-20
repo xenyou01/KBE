@@ -22,7 +22,7 @@ public class SongWebService {
 	
 	@GET
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	public Collection<Song> getAllCOntacts()
+	public Collection<Song> getAllSongs()
 	{
 		return SongStore.getInstance().getAllSong();
 	}
@@ -54,6 +54,8 @@ public class SongWebService {
 	public Response updateSong(@PathParam("id") Integer id, Song song)
 	{
 		song.setId(id);
+		if(song.getTitle() == null)
+			return Response.status(Response.Status.NOT_ACCEPTABLE).build();
 		boolean existingSong = SongStore.getInstance().updateSong(song);
 		if(!existingSong){
 			return Response.status(Response.Status.NOT_FOUND).build();
