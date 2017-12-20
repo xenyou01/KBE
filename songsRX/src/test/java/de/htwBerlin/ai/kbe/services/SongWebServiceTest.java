@@ -45,10 +45,28 @@ public class SongWebServiceTest extends JerseyTest {
 	@Test
     public void testPutWithKnownSongIdShouldReturn204(){
 		Song song = new Song.Builder(10, "New Title").build();
-		 Response output = target("/songs/10")
+		Response output = target("/songs/10")
 	        		.request()
 	        		.put(Entity.entity(song, MediaType.APPLICATION_JSON));;
-	        assertEquals("Should return status 204", 204, output.getStatus());
+	    assertEquals("Should return status 204", 204, output.getStatus());
+    }
+	
+	@Test
+    public void testPutWithUnknownSongIdAndNoTitleShouldReturn406(){
+		Song song = new Song();		
+        Response output = target("/songs/777")
+        		.request()
+        		.put(Entity.entity(song, MediaType.APPLICATION_JSON));;
+        assertEquals("Should return status 406", 406, output.getStatus());
+    }
+	
+	@Test
+    public void testPutWithKnownSongIdAndNoTitleShouldReturn406(){
+		Song song = new Song();
+		Response output = target("/songs/10")
+	        	.request()
+	        	.put(Entity.entity(song, MediaType.APPLICATION_JSON));;
+	    assertEquals("Should return status 406", 406, output.getStatus());
     }
 
 }
