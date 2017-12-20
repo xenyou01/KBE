@@ -33,7 +33,7 @@ public class SongWebServiceTest extends JerseyTest {
 	// POST
 	@Test
 	public void testPostWithAlreadyUsedSongIdShouldReturn409(){
-		Song song = new Song.Builder(10, "New Title").build();
+		Song song = new Song.Builder(64, "New Title").build();
         Response output = target("/songs").request().post(Entity.entity(song, MediaType.APPLICATION_JSON));
         assertEquals("Should return status 409", 409, output.getStatus());
     }

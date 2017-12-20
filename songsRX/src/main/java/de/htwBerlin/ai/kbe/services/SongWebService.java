@@ -42,6 +42,9 @@ public class SongWebService {
 	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	@Produces(MediaType.TEXT_PLAIN)
 	public Response addSong(Song song){
+		if(song.getTitle() == null){
+			return Response.status(Response.Status.NOT_ACCEPTABLE).entity("The title should be set!").build();
+		}
 		Integer id = SongStore.getInstance().addSong(song);
 		if(id == null)
 			return Response.status(Response.Status.CONFLICT).entity("!! A song with the same id already exist !!").build();
