@@ -1,0 +1,483 @@
+--- REQUESTING ALL JSON SONGS ------------
+* Hostname was NOT found in DNS cache
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0*   Trying 127.0.0.1...
+* Connected to localhost (127.0.0.1) port 8080 (#0)
+> GET /songsRX/rest/songs HTTP/1.1
+> User-Agent: curl/7.35.0
+> Host: localhost:8080
+> Accept: application/json
+> 
+  0     0    0     0    0     0      0      0 --:--:--  0:00:01 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:02 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:03 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:04 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:05 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:06 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:07 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:08 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:09 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:10 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:11 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:12 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:13 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:14 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:15 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:16 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:17 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:18 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:19 --:--:--     0< HTTP/1.1 200 
+< Content-Type: application/json
+< Content-Length: 1007
+< Date: Thu, 21 Dec 2017 10:59:11 GMT
+< 
+{ [data not shown]
+100  1007  100  1007    0     0     49      0  0:00:20  0:00:20 --:--:--   230100  1007  100  1007    0     0     49      0  0:00:20  0:00:20 --:--:--   289
+* Connection #0 to host localhost left intact
+[{"id":64,"title":"Ghostbusters (I'm not a fraid)","artist":"Fall Out Boy, Missy Elliott","album":"Ghostbusters","released":2016},{"id":82,"title":"Mom","artist":"Meghan Trainor, Kelli Trainor","album":"Thank You","released":2016},{"id":37,"title":"i hate u, i love u","artist":"Gnash","album":"Top Hits 2017","released":2017},{"id":55,"title":"Bad Things","artist":"Camila Cabello, Machine Gun Kelly","album":"Bloom","released":2017},{"id":9,"title":"Private Show","artist":"Britney Spears","album":"Glory","released":2016},{"id":73,"title":"Team","artist":"Iggy Azalea","album":null,"released":2016},{"id":10,"title":"7 Years","artist":"Lukas Graham","album":"Lukas Graham (Blue Album)","released":2015},{"id":91,"title":"Can’t Stop the Feeling","artist":"Justin Timberlake","album":"Trolls","released":2016},{"id":28,"title":"No","artist":"Meghan Trainor","album":"Thank You","released":2016},{"id":46,"title":"I Took a Pill in Ibiza","artist":"Mike Posner","album":"At Night, Alone.","released":2016}] 
+-------------------------------------------------------------------------------------------------
+--- REQUESTING ALL XML SONGS--------
+* Hostname was NOT found in DNS cache
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0*   Trying 127.0.0.1...
+* Connected to localhost (127.0.0.1) port 8080 (#0)
+> GET /songsRX/rest/songs HTTP/1.1
+> User-Agent: curl/7.35.0
+> Host: localhost:8080
+> Accept: application/xml
+> 
+< HTTP/1.1 200 
+< Content-Type: application/xml
+< Content-Length: 1419
+< Date: Thu, 21 Dec 2017 10:59:11 GMT
+< 
+{ [data not shown]
+100  1419  100  1419    0     0   5127      0 --:--:-- --:--:-- --:--:--  5141
+* Connection #0 to host localhost left intact
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?><songs><song><album>Ghostbusters</album><artist>Fall Out Boy, Missy Elliott</artist><id>64</id><released>2016</released><title>Ghostbusters (I'm not a fraid)</title></song><song><album>Thank You</album><artist>Meghan Trainor, Kelli Trainor</artist><id>82</id><released>2016</released><title>Mom</title></song><song><album>Top Hits 2017</album><artist>Gnash</artist><id>37</id><released>2017</released><title>i hate u, i love u</title></song><song><album>Bloom</album><artist>Camila Cabello, Machine Gun Kelly</artist><id>55</id><released>2017</released><title>Bad Things</title></song><song><album>Glory</album><artist>Britney Spears</artist><id>9</id><released>2016</released><title>Private Show</title></song><song><artist>Iggy Azalea</artist><id>73</id><released>2016</released><title>Team</title></song><song><album>Lukas Graham (Blue Album)</album><artist>Lukas Graham</artist><id>10</id><released>2015</released><title>7 Years</title></song><song><album>Trolls</album><artist>Justin Timberlake</artist><id>91</id><released>2016</released><title>Can’t Stop the Feeling</title></song><song><album>Thank You</album><artist>Meghan Trainor</artist><id>28</id><released>2016</released><title>No</title></song><song><album>At Night, Alone.</album><artist>Mike Posner</artist><id>46</id><released>2016</released><title>I Took a Pill in Ibiza</title></song></songs> 
+-------------------------------------------------------------------------------------------------
+--- REQUESTING SONG 28 IN XML--------
+* Hostname was NOT found in DNS cache
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0*   Trying 127.0.0.1...
+* Connected to localhost (127.0.0.1) port 8080 (#0)
+> GET /songsRX/rest/songs/28 HTTP/1.1
+> User-Agent: curl/7.35.0
+> Host: localhost:8080
+> Accept: application/xml
+> 
+< HTTP/1.1 200 
+< Content-Type: application/xml
+< Content-Length: 176
+< Date: Thu, 21 Dec 2017 10:59:11 GMT
+< 
+{ [data not shown]
+100   176  100   176    0     0  11120      0 --:--:-- --:--:-- --:--:-- 11733
+* Connection #0 to host localhost left intact
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?><song><album>Thank You</album><artist>Meghan Trainor</artist><id>28</id><released>2016</released><title>No</title></song> 
+-------------------------------------------------------------------------------------------------
+--- REQUESTING NON-EXISTING SONG 11:--------
+* Hostname was NOT found in DNS cache
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0*   Trying 127.0.0.1...
+* Connected to localhost (127.0.0.1) port 8080 (#0)
+> GET /songsRX/rest/songs/11 HTTP/1.1
+> User-Agent: curl/7.35.0
+> Host: localhost:8080
+> Accept: application/json
+> 
+< HTTP/1.1 404 
+< Content-Type: application/json
+< Content-Length: 25
+< Date: Thu, 21 Dec 2017 10:59:11 GMT
+< 
+{ [data not shown]
+100    25  100    25    0     0   2253      0 --:--:-- --:--:-- --:--:--  2500
+* Connection #0 to host localhost left intact
+No Song with the given ID 
+-------------------------------------------------------------------------------------------------
+--- REQUESTING NON-EXISTING SONG 'OLD':--------
+* Hostname was NOT found in DNS cache
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0*   Trying 127.0.0.1...
+* Connected to localhost (127.0.0.1) port 8080 (#0)
+> GET /songsRX/rest/songs/OLD HTTP/1.1
+> User-Agent: curl/7.35.0
+> Host: localhost:8080
+> Accept: application/json
+> 
+< HTTP/1.1 404 
+< Content-Type: text/html;charset=utf-8
+< Content-Language: en
+< Content-Length: 1078
+< Date: Thu, 21 Dec 2017 10:59:11 GMT
+< 
+{ [data not shown]
+100  1078  100  1078    0     0  47872      0 --:--:-- --:--:-- --:--:-- 49000
+* Connection #0 to host localhost left intact
+<!doctype html><html lang="en"><head><title>HTTP Status 404 – Not Found</title><style type="text/css">h1 {font-family:Tahoma,Arial,sans-serif;color:white;background-color:#525D76;font-size:22px;} h2 {font-family:Tahoma,Arial,sans-serif;color:white;background-color:#525D76;font-size:16px;} h3 {font-family:Tahoma,Arial,sans-serif;color:white;background-color:#525D76;font-size:14px;} body {font-family:Tahoma,Arial,sans-serif;color:black;background-color:white;} b {font-family:Tahoma,Arial,sans-serif;color:white;background-color:#525D76;} p {font-family:Tahoma,Arial,sans-serif;background:white;color:black;font-size:12px;} a {color:black;} a.name {color:black;} .line {height:1px;background-color:#525D76;border:none;}</style></head><body><h1>HTTP Status 404 – Not Found</h1><hr class="line" /><p><b>Type</b> Status Report</p><p><b>Message</b> Not Found</p><p><b>Description</b> The origin server did not find a current representation for the target resource or is not willing to disclose that one exists.</p><hr class="line" /><h3>Apache Tomcat/8.5.23</h3></body></html> 
+-------------------------------------------------------------------------------------------------
+--- POSTING A JSON SONG ------------------
+* Hostname was NOT found in DNS cache
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0*   Trying 127.0.0.1...
+* Connected to localhost (127.0.0.1) port 8080 (#0)
+> POST /songsRX/rest/songs HTTP/1.1
+> User-Agent: curl/7.35.0
+> Host: localhost:8080
+> Content-Type: application/json
+> Accept: text/plain
+> Content-Length: 108
+> 
+} [data not shown]
+* upload completely sent off: 108 out of 108 bytes
+< HTTP/1.1 201 
+< Content-Type: text/plain
+< Content-Length: 2
+< Date: Thu, 21 Dec 2017 10:59:11 GMT
+< 
+{ [data not shown]
+100   110  100     2  100   108     42   2318 --:--:-- --:--:-- --:--:--  2347
+* Connection #0 to host localhost left intact
+92 
+-------------------------------------------------------------------------------------------------
+--- POSTING A XML SONG ------------------
+* Hostname was NOT found in DNS cache
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0*   Trying 127.0.0.1...
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0* Connected to localhost (127.0.0.1) port 8080 (#0)
+> POST /songsRX/rest/songs HTTP/1.1
+> User-Agent: curl/7.35.0
+> Host: localhost:8080
+> Content-Type: application/xml
+> Accept: text/plain
+> Content-Length: 173
+> 
+} [data not shown]
+* upload completely sent off: 173 out of 173 bytes
+< HTTP/1.1 201 
+< Content-Type: text/plain
+< Content-Length: 2
+< Date: Thu, 21 Dec 2017 10:59:11 GMT
+< 
+{ [data not shown]
+100   175  100     2  100   173     49   4310 --:--:-- --:--:-- --:--:--  4325
+* Connection #0 to host localhost left intact
+93 
+-------------------------------------------------------------------------------------------------
+--- REQUESTING NEW SONG 92 IN XML--------
+* Hostname was NOT found in DNS cache
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0*   Trying 127.0.0.1...
+* Connected to localhost (127.0.0.1) port 8080 (#0)
+> GET /songsRX/rest/songs/92 HTTP/1.1
+> User-Agent: curl/7.35.0
+> Host: localhost:8080
+> Accept: application/xml
+> 
+< HTTP/1.1 200 
+< Content-Type: application/xml
+< Content-Length: 192
+< Date: Thu, 21 Dec 2017 10:59:11 GMT
+< 
+{ [data not shown]
+100   192  100   192    0     0  16269      0 --:--:-- --:--:-- --:--:-- 17454
+* Connection #0 to host localhost left intact
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?><song><album>Lukas 777 (Album Seven)</album><artist>Lukas 777</artist><id>92</id><released>2017</released><title>777 Years</title></song> 
+-------------------------------------------------------------------------------------------------
+--- REQUESTING NEW SONG 93 IN JSON--------
+* Hostname was NOT found in DNS cache
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0*   Trying 127.0.0.1...
+* Connected to localhost (127.0.0.1) port 8080 (#0)
+> GET /songsRX/rest/songs/93 HTTP/1.1
+> User-Agent: curl/7.35.0
+> Host: localhost:8080
+> Accept: application/json
+> 
+< HTTP/1.1 200 
+< Content-Type: application/json
+< Content-Length: 100
+< Date: Thu, 21 Dec 2017 10:59:12 GMT
+< 
+{ [data not shown]
+100   100  100   100    0     0   7805      0 --:--:-- --:--:-- --:--:--  8333
+* Connection #0 to host localhost left intact
+{"id":93,"title":"888 Years","artist":"Lukas 888","album":"Lukas 888 (Album Eight)","released":2018} 
+-------------------------------------------------------------------------------------------------
+--- UPDATING JSON-SONG 9 ------------------
+* Hostname was NOT found in DNS cache
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0*   Trying 127.0.0.1...
+* Connected to localhost (127.0.0.1) port 8080 (#0)
+> PUT /songsRX/rest/songs/9 HTTP/1.1
+> User-Agent: curl/7.35.0
+> Host: localhost:8080
+> Content-Type: application/json
+> Accept: text/plain
+> Content-Length: 108
+> 
+} [data not shown]
+* upload completely sent off: 108 out of 108 bytes
+< HTTP/1.1 204 
+< Date: Thu, 21 Dec 2017 10:59:12 GMT
+< 
+100   108    0     0  100   108      0   8799 --:--:-- --:--:-- --:--:--  9000
+* Connection #0 to host localhost left intact
+ 
+-------------------------------------------------------------------------------------------------
+--- REQUESTING UPDATED SONG 9 ------------------
+* Hostname was NOT found in DNS cache
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0*   Trying 127.0.0.1...
+* Connected to localhost (127.0.0.1) port 8080 (#0)
+> GET /songsRX/rest/songs/9 HTTP/1.1
+> User-Agent: curl/7.35.0
+> Host: localhost:8080
+> Accept: application/json
+> 
+< HTTP/1.1 200 
+< Content-Type: application/json
+< Content-Length: 88
+< Date: Thu, 21 Dec 2017 10:59:12 GMT
+< 
+{ [data not shown]
+100    88  100    88    0     0   7694      0 --:--:-- --:--:-- --:--:--  8000
+* Connection #0 to host localhost left intact
+{"id":9,"title":"Private Show","artist":"Britney PEARS","album":"Glory","released":2016} 
+-------------------------------------------------------------------------------------------------
+--- UPDATING XML-SONG 10 ------------------
+* Hostname was NOT found in DNS cache
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0*   Trying 127.0.0.1...
+* Connected to localhost (127.0.0.1) port 8080 (#0)
+> PUT /songsRX/rest/songs/10 HTTP/1.1
+> User-Agent: curl/7.35.0
+> Host: localhost:8080
+> Content-Type: application/xml
+> Accept: text/plain
+> Content-Length: 213
+> 
+} [data not shown]
+* upload completely sent off: 213 out of 213 bytes
+< HTTP/1.1 204 
+< Date: Thu, 21 Dec 2017 10:59:12 GMT
+< 
+100   213    0     0  100   213      0  18286 --:--:-- --:--:-- --:--:-- 19363
+* Connection #0 to host localhost left intact
+ 
+-------------------------------------------------------------------------------------------------
+--- REQUESTING UPDATED SONG 10 ------------------
+* Hostname was NOT found in DNS cache
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0*   Trying 127.0.0.1...
+* Connected to localhost (127.0.0.1) port 8080 (#0)
+> GET /songsRX/rest/songs/10 HTTP/1.1
+> User-Agent: curl/7.35.0
+> Host: localhost:8080
+> Accept: application/xml
+> 
+< HTTP/1.1 200 
+< Content-Type: application/xml
+< Content-Length: 224
+< Date: Thu, 21 Dec 2017 10:59:12 GMT
+< 
+{ [data not shown]
+100   224  100   224    0     0  18853      0 --:--:-- --:--:-- --:--:-- 20363
+* Connection #0 to host localhost left intact
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?><song><album>Lukas Graham (Updated Album Name - old name was wrong)</album><artist>Lukas Graham</artist><id>10</id><released>2015</released><title>7 Years</title></song> 
+-------------------------------------------------------------------------------------------------
+--- UPDATING NON-EXISTING SONG 22 WITH PAYLOAD SONG 10 -----------------
+* Hostname was NOT found in DNS cache
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0*   Trying 127.0.0.1...
+* Connected to localhost (127.0.0.1) port 8080 (#0)
+> PUT /songsRX/rest/songs/22 HTTP/1.1
+> User-Agent: curl/7.35.0
+> Host: localhost:8080
+> Content-Type: application/xml
+> Accept: text/plain
+> Content-Length: 213
+> 
+} [data not shown]
+* upload completely sent off: 213 out of 213 bytes
+< HTTP/1.1 404 
+< Content-Type: text/html;charset=utf-8
+< Content-Language: en
+< Content-Length: 1078
+< Date: Thu, 21 Dec 2017 10:59:12 GMT
+< 
+{ [data not shown]
+100  1291  100  1078  100   213  77884  15389 --:--:-- --:--:-- --:--:-- 82923
+* Connection #0 to host localhost left intact
+<!doctype html><html lang="en"><head><title>HTTP Status 404 – Not Found</title><style type="text/css">h1 {font-family:Tahoma,Arial,sans-serif;color:white;background-color:#525D76;font-size:22px;} h2 {font-family:Tahoma,Arial,sans-serif;color:white;background-color:#525D76;font-size:16px;} h3 {font-family:Tahoma,Arial,sans-serif;color:white;background-color:#525D76;font-size:14px;} body {font-family:Tahoma,Arial,sans-serif;color:black;background-color:white;} b {font-family:Tahoma,Arial,sans-serif;color:white;background-color:#525D76;} p {font-family:Tahoma,Arial,sans-serif;background:white;color:black;font-size:12px;} a {color:black;} a.name {color:black;} .line {height:1px;background-color:#525D76;border:none;}</style></head><body><h1>HTTP Status 404 – Not Found</h1><hr class="line" /><p><b>Type</b> Status Report</p><p><b>Message</b> Not Found</p><p><b>Description</b> The origin server did not find a current representation for the target resource or is not willing to disclose that one exists.</p><hr class="line" /><h3>Apache Tomcat/8.5.23</h3></body></html> 
+-------------------------------------------------------------------------------------------------
+--- REQUESTING UPDATED SONG 10: IT SHOULD NOT BE UPDATED ------------------
+* Hostname was NOT found in DNS cache
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0*   Trying 127.0.0.1...
+* Connected to localhost (127.0.0.1) port 8080 (#0)
+> GET /songsRX/rest/songs/10 HTTP/1.1
+> User-Agent: curl/7.35.0
+> Host: localhost:8080
+> Accept: application/xml
+> 
+< HTTP/1.1 200 
+< Content-Type: application/xml
+< Content-Length: 224
+< Date: Thu, 21 Dec 2017 10:59:12 GMT
+< 
+{ [data not shown]
+100   224  100   224    0     0  19566      0 --:--:-- --:--:-- --:--:-- 20363
+* Connection #0 to host localhost left intact
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?><song><album>Lukas Graham (Updated Album Name - old name was wrong)</album><artist>Lukas Graham</artist><id>10</id><released>2015</released><title>7 Years</title></song> 
+-------------------------------------------------------------------------------------------------
+--- REQUESTING UPDATED SONG 22: SHOULD GIVE 404 ------------------
+* Hostname was NOT found in DNS cache
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0*   Trying 127.0.0.1...
+* Connected to localhost (127.0.0.1) port 8080 (#0)
+> GET /songsRX/rest/songs/22 HTTP/1.1
+> User-Agent: curl/7.35.0
+> Host: localhost:8080
+> Accept: application/xml
+> 
+< HTTP/1.1 404 
+< Content-Type: application/xml
+< Content-Length: 25
+< Date: Thu, 21 Dec 2017 10:59:12 GMT
+< 
+{ [data not shown]
+100    25  100    25    0     0   2006      0 --:--:-- --:--:-- --:--:--  2083
+* Connection #0 to host localhost left intact
+No Song with the given ID 
+-------------------------------------------------------------------------------------------------
+--- UPDATING SONG 37 WITH PAYLOAD SONG 10 -----------------
+* Hostname was NOT found in DNS cache
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0*   Trying 127.0.0.1...
+* Connected to localhost (127.0.0.1) port 8080 (#0)
+> PUT /songsRX/rest/songs/37 HTTP/1.1
+> User-Agent: curl/7.35.0
+> Host: localhost:8080
+> Content-Type: application/xml
+> Accept: text/plain
+> Content-Length: 213
+> 
+} [data not shown]
+* upload completely sent off: 213 out of 213 bytes
+< HTTP/1.1 204 
+< Date: Thu, 21 Dec 2017 10:59:12 GMT
+< 
+100   213    0     0  100   213      0  17365 --:--:-- --:--:-- --:--:-- 17750
+* Connection #0 to host localhost left intact
+ 
+-------------------------------------------------------------------------------------------------
+--- REQUESTING UPDATED SONG 37: IT SHOULD BE LUKAS WITH ID 37 ------------------
+* Hostname was NOT found in DNS cache
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0*   Trying 127.0.0.1...
+* Connected to localhost (127.0.0.1) port 8080 (#0)
+> GET /songsRX/rest/songs/37 HTTP/1.1
+> User-Agent: curl/7.35.0
+> Host: localhost:8080
+> Accept: application/xml
+> 
+< HTTP/1.1 200 
+< Content-Type: application/xml
+< Content-Length: 224
+< Date: Thu, 21 Dec 2017 10:59:12 GMT
+< 
+{ [data not shown]
+100   224  100   224    0     0  19957      0 --:--:-- --:--:-- --:--:-- 22400
+* Connection #0 to host localhost left intact
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?><song><album>Lukas Graham (Updated Album Name - old name was wrong)</album><artist>Lukas Graham</artist><id>37</id><released>2015</released><title>7 Years</title></song> 
+-------------------------------------------------------------------------------------------------
+--- UPDATING SONG 37 WITH BAD PAYLOAD -----------------
+* Hostname was NOT found in DNS cache
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0*   Trying 127.0.0.1...
+* Connected to localhost (127.0.0.1) port 8080 (#0)
+> PUT /songsRX/rest/songs/37 HTTP/1.1
+> User-Agent: curl/7.35.0
+> Host: localhost:8080
+> Content-Type: application/xml
+> Accept: text/plain
+> Content-Length: 24
+> 
+} [data not shown]
+* upload completely sent off: 24 out of 24 bytes
+< HTTP/1.1 400 
+< Content-Type: text/html;charset=utf-8
+< Content-Language: en
+< Content-Length: 1160
+< Date: Thu, 21 Dec 2017 10:59:12 GMT
+< Connection: close
+< 
+{ [data not shown]
+100  1184  100  1160  100    24   6420    132 --:--:-- --:--:-- --:--:--  6444
+* Closing connection 0
+<!doctype html><html lang="en"><head><title>HTTP Status 400 – Bad Request</title><style type="text/css">h1 {font-family:Tahoma,Arial,sans-serif;color:white;background-color:#525D76;font-size:22px;} h2 {font-family:Tahoma,Arial,sans-serif;color:white;background-color:#525D76;font-size:16px;} h3 {font-family:Tahoma,Arial,sans-serif;color:white;background-color:#525D76;font-size:14px;} body {font-family:Tahoma,Arial,sans-serif;color:black;background-color:white;} b {font-family:Tahoma,Arial,sans-serif;color:white;background-color:#525D76;} p {font-family:Tahoma,Arial,sans-serif;background:white;color:black;font-size:12px;} a {color:black;} a.name {color:black;} .line {height:1px;background-color:#525D76;border:none;}</style></head><body><h1>HTTP Status 400 – Bad Request</h1><hr class="line" /><p><b>Type</b> Status Report</p><p><b>Message</b> Bad Request</p><p><b>Description</b> The server cannot or will not process the request due to something that is perceived to be a client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing).</p><hr class="line" /><h3>Apache Tomcat/8.5.23</h3></body></html> 
+-------------------------------------------------------------------------------------------------
+--- REQUESTING SONG 37: IT SHOULD STILL BE LUKAS WITH ID 37 ------------------
+* Hostname was NOT found in DNS cache
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0*   Trying 127.0.0.1...
+* Connected to localhost (127.0.0.1) port 8080 (#0)
+> GET /songsRX/rest/songs/37 HTTP/1.1
+> User-Agent: curl/7.35.0
+> Host: localhost:8080
+> Accept: application/xml
+> 
+< HTTP/1.1 200 
+< Content-Type: application/xml
+< Content-Length: 224
+< Date: Thu, 21 Dec 2017 10:59:12 GMT
+< 
+{ [data not shown]
+100   224  100   224    0     0  18466      0 --:--:-- --:--:-- --:--:-- 20363
+* Connection #0 to host localhost left intact
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?><song><album>Lukas Graham (Updated Album Name - old name was wrong)</album><artist>Lukas Graham</artist><id>37</id><released>2015</released><title>7 Years</title></song> 
+-------------------------------------------------------------------------------------------------
+--- DELETING SONG 28 --------
+* Hostname was NOT found in DNS cache
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0*   Trying 127.0.0.1...
+* Connected to localhost (127.0.0.1) port 8080 (#0)
+> DELETE /songsRX/rest/songs/28 HTTP/1.1
+> User-Agent: curl/7.35.0
+> Host: localhost:8080
+> Accept: text/plain
+> 
+< HTTP/1.1 204 
+< Date: Thu, 21 Dec 2017 10:59:12 GMT
+< 
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+* Connection #0 to host localhost left intact
+ 
+-------------------------------------------------------------------------------------------------
+--- DELETING SONG 28 AGAIN: SHOULD PRODUCE 404 --------
+* Hostname was NOT found in DNS cache
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0*   Trying 127.0.0.1...
+* Connected to localhost (127.0.0.1) port 8080 (#0)
+> DELETE /songsRX/rest/songs/28 HTTP/1.1
+> User-Agent: curl/7.35.0
+> Host: localhost:8080
+> Accept: text/plain
+> 
+< HTTP/1.1 404 
+< Content-Type: text/html;charset=utf-8
+< Content-Language: en
+< Content-Length: 1078
+< Date: Thu, 21 Dec 2017 10:59:12 GMT
+< 
+{ [data not shown]
+100  1078  100  1078    0     0  91822      0 --:--:-- --:--:-- --:--:-- 98000
+* Connection #0 to host localhost left intact
+<!doctype html><html lang="en"><head><title>HTTP Status 404 – Not Found</title><style type="text/css">h1 {font-family:Tahoma,Arial,sans-serif;color:white;background-color:#525D76;font-size:22px;} h2 {font-family:Tahoma,Arial,sans-serif;color:white;background-color:#525D76;font-size:16px;} h3 {font-family:Tahoma,Arial,sans-serif;color:white;background-color:#525D76;font-size:14px;} body {font-family:Tahoma,Arial,sans-serif;color:black;background-color:white;} b {font-family:Tahoma,Arial,sans-serif;color:white;background-color:#525D76;} p {font-family:Tahoma,Arial,sans-serif;background:white;color:black;font-size:12px;} a {color:black;} a.name {color:black;} .line {height:1px;background-color:#525D76;border:none;}</style></head><body><h1>HTTP Status 404 – Not Found</h1><hr class="line" /><p><b>Type</b> Status Report</p><p><b>Message</b> Not Found</p><p><b>Description</b> The origin server did not find a current representation for the target resource or is not willing to disclose that one exists.</p><hr class="line" /><h3>Apache Tomcat/8.5.23</h3></body></html> 
+-------------------------------------------------------------------------------------------------
