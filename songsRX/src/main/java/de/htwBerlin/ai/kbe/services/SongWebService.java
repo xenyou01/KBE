@@ -10,24 +10,30 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
 import de.htwBerlin.ai.kbe.bean.Song;
+import de.htwBerlin.ai.kbe.filter.Secured;
 import de.htwBerlin.ai.kbe.storage.SongStore;
+import de.htwBerlin.ai.kbe.storage.Token;
 
 @Path("/songs")
 public class SongWebService {
-	
+
 	@GET
+	@Secured
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	public Collection<Song> getAllSongs()
+	public Response getAllSongs()
 	{
-		return SongStore.getInstance().getAllSong();
+		return Response.ok(SongStore.getInstance().getAllSong()).build();
 	}
 	
 	@GET
+	@Secured
 	@Path("/{id}")
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	public Response getSong(@PathParam("id") Integer id){
@@ -39,6 +45,7 @@ public class SongWebService {
 	}
 	
 	@POST
+	@Secured
 	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	@Produces(MediaType.TEXT_PLAIN)
 	public Response addSong(Song song){
@@ -52,6 +59,7 @@ public class SongWebService {
 	}
 	
 	@PUT
+	@Secured
 	@Path("/{id}")
 	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	public Response updateSong(@PathParam("id") Integer id, Song song)
@@ -67,6 +75,7 @@ public class SongWebService {
 	}
 	
 	@DELETE
+	@Secured
 	@Path("/{id}")
 	public Response deleteSong(@PathParam("id") Integer id){
 		Song deletedSong = SongStore.getInstance().deleteSong(id);
@@ -74,8 +83,4 @@ public class SongWebService {
 			return Response.status(Response.Status.NOT_FOUND).build();
 		return Response.status(Response.Status.NO_CONTENT).build();
 	}
-	
-	
-	
-
 }
