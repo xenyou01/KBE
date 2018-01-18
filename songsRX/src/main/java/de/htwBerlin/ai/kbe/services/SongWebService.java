@@ -2,6 +2,7 @@ package de.htwBerlin.ai.kbe.services;
 
 import java.util.Collection;
 
+import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -19,17 +20,21 @@ import javax.ws.rs.core.Response.Status;
 import de.htwBerlin.ai.kbe.bean.Song;
 import de.htwBerlin.ai.kbe.filter.Secured;
 import de.htwBerlin.ai.kbe.storage.SongStore;
+import de.htwBerlin.ai.kbe.storage.SongsDAO;
 import de.htwBerlin.ai.kbe.storage.Token;
 
 @Path("/songs")
 public class SongWebService {
+	
+	@Inject
+	SongsDAO songStore;
 
 	@GET
 	@Secured
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	public Response getAllSongs()
+	public Collection<Song> getAllSongs()
 	{
-		return Response.ok(SongStore.getInstance().getAllSong()).build();
+		return songStore.getAllSong();
 	}
 	
 	@GET
@@ -37,7 +42,7 @@ public class SongWebService {
 	@Path("/{id}")
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	public Response getSong(@PathParam("id") Integer id){
-		Song song = SongStore.getInstance().getSong(id);
+		Song song = songStore.getSong(id);
 		if(song != null){
 			return Response.ok(song).build();
 		}
@@ -52,7 +57,8 @@ public class SongWebService {
 		if(song.getTitle() == null){
 			return Response.status(Response.Status.NOT_ACCEPTABLE).entity("The title should be set!").build();
 		}
-		Integer id = SongStore.getInstance().addSong(song);
+		song.setId(null);
+		Integer id = songStore.addSong(song);
 		if(id == null)
 			return Response.status(Response.Status.CONFLICT).entity("!! A song with the same id already exist !!").build();
 		return Response.status(Response.Status.CREATED).entity(id).build();
@@ -78,7 +84,7 @@ public class SongWebService {
 	@Secured
 	@Path("/{id}")
 	public Response deleteSong(@PathParam("id") Integer id){
-		Song deletedSong = SongStore.getInstance().deleteSong(id);
+		Song deletedSong = songStore.deleteSong(id);
 		if(deletedSong == null)
 			return Response.status(Response.Status.NOT_FOUND).build();
 		return Response.status(Response.Status.NO_CONTENT).build();

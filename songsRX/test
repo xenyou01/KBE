@@ -1,0 +1,262 @@
+[ {
+  "id" : 1,
+  "user" : {
+    "id" : 1,
+    "userId" : "me",
+    "firstName" : "Me",
+    "lastName" : "Myself",
+    "email" : "me@web.de"
+  },
+  "access" : 1,
+  "songs" : [ {
+    "id" : 2,
+    "title" : "7 Years",
+    "artist" : "Lukas Graham",
+    "album" : "Lukas Graham (Blue Album)",
+    "released" : 2015
+  }, {
+    "id" : 6,
+    "title" : "Bad Things",
+    "artist" : "Camila Cabello, Machine Gun Kelly",
+    "album" : "Bloom",
+    "released" : 2017
+  }, {
+    "id" : 1,
+    "title" : "Private Show",
+    "artist" : "Britney Spears",
+    "album" : "Glory",
+    "released" : 2016
+  }, {
+    "id" : 9,
+    "title" : "Mom",
+    "artist" : "Meghan Trainor, Kelli Trainor",
+    "album" : "Thank You",
+    "released" : 2016
+  } ]
+}, {
+  "id" : 2,
+  "user" : {
+    "id" : 1,
+    "userId" : "me",
+    "firstName" : "Me",
+    "lastName" : "Myself",
+    "email" : "me@web.de"
+  },
+  "access" : 0,
+  "songs" : [ {
+    "id" : 2,
+    "title" : "7 Years",
+    "artist" : "Lukas Graham",
+    "album" : "Lukas Graham (Blue Album)",
+    "released" : 2015
+  }, {
+    "id" : 6,
+    "title" : "Bad Things",
+    "artist" : "Camila Cabello, Machine Gun Kelly",
+    "album" : "Bloom",
+    "released" : 2017
+  }, {
+    "id" : 7,
+    "title" : "Ghostbusters (I am not a fraid)",
+    "artist" : "Fall Out Boy, Missy Elliott",
+    "album" : "Ghostbusters",
+    "released" : 2016
+  }, {
+    "id" : 5,
+    "title" : "I Took a Pill in Ibiza",
+    "artist" : "Mike Posner",
+    "album" : "At Night, Alone.",
+    "released" : 2016
+  } ]
+}, {
+  "id" : 3,
+  "user" : {
+    "id" : 1,
+    "userId" : "me",
+    "firstName" : "Me",
+    "lastName" : "Myself",
+    "email" : "me@web.de"
+  },
+  "access" : 1,
+  "songs" : [ {
+    "id" : 3,
+    "title" : "No",
+    "artist" : "Meghan Trainor",
+    "album" : "Thank You",
+    "released" : 2016
+  }, {
+    "id" : 10,
+    "title" : "Cant Stop the Feeling",
+    "artist" : "Justin Timberlake",
+    "album" : "Trolls",
+    "released" : 2016
+  }, {
+    "id" : 8,
+    "title" : "Team",
+    "artist" : "Iggy Azalea",
+    "album" : "No Album",
+    "released" : 2016
+  } ]
+}, {
+  "id" : 4,
+  "user" : {
+    "id" : 2,
+    "userId" : "eschuler",
+    "firstName" : "Elena",
+    "lastName" : "Schuler",
+    "email" : "eschuler@web.de"
+  },
+  "access" : 1,
+  "songs" : [ {
+    "id" : 4,
+    "title" : "I hate u, I love u",
+    "artist" : "Gnash",
+    "album" : "Top Hits 2017",
+    "released" : 2017
+  }, {
+    "id" : 1,
+    "title" : "Private Show",
+    "artist" : "Britney Spears",
+    "album" : "Glory",
+    "released" : 2016
+  }, {
+    "id" : 9,
+    "title" : "Mom",
+    "artist" : "Meghan Trainor, Kelli Trainor",
+    "album" : "Thank You",
+    "released" : 2016
+  } ]
+}, {
+  "id" : 5,
+  "user" : {
+    "id" : 2,
+    "userId" : "eschuler",
+    "firstName" : "Elena",
+    "lastName" : "Schuler",
+    "email" : "eschuler@web.de"
+  },
+  "access" : 0,
+  "songs" : [ {
+    "id" : 2,
+    "title" : "7 Years",
+    "artist" : "Lukas Graham",
+    "album" : "Lukas Graham (Blue Album)",
+    "released" : 2015
+  }, {
+    "id" : 6,
+    "title" : "Bad Things",
+    "artist" : "Camila Cabello, Machine Gun Kelly",
+    "album" : "Bloom",
+    "released" : 2017
+  }, {
+    "id" : 5,
+    "title" : "I Took a Pill in Ibiza",
+    "artist" : "Mike Posner",
+    "album" : "At Night, Alone.",
+    "released" : 2016
+  } ]
+}, {
+  "id" : 6,
+  "user" : {
+    "id" : 2,
+    "userId" : "eschuler",
+    "firstName" : "Elena",
+    "lastName" : "Schuler",
+    "email" : "eschuler@web.de"
+  },
+  "access" : 0,
+  "songs" : [ {
+    "id" : 3,
+    "title" : "No",
+    "artist" : "Meghan Trainor",
+    "album" : "Thank You",
+    "released" : 2016
+  }, {
+    "id" : 6,
+    "title" : "Bad Things",
+    "artist" : "Camila Cabello, Machine Gun Kelly",
+    "album" : "Bloom",
+    "released" : 2017
+  } ]
+}, {
+  "id" : 7,
+  "user" : {
+    "id" : 2,
+    "userId" : "eschuler",
+    "firstName" : "Elena",
+    "lastName" : "Schuler",
+    "email" : "eschuler@web.de"
+  },
+  "access" : 1,
+  "songs" : [ {
+    "id" : 4,
+    "title" : "I hate u, I love u",
+    "artist" : "Gnash",
+    "album" : "Top Hits 2017",
+    "released" : 2017
+  }, {
+    "id" : 7,
+    "title" : "Ghostbusters (I am not a fraid)",
+    "artist" : "Fall Out Boy, Missy Elliott",
+    "album" : "Ghostbusters",
+    "released" : 2016
+  }, {
+    "id" : 8,
+    "title" : "Team",
+    "artist" : "Iggy Azalea",
+    "album" : "No Album",
+    "released" : 2016
+  } ]
+}, {
+  "id" : 8,
+  "user" : {
+    "id" : 3,
+    "userId" : "mmuster",
+    "firstName" : "Maxime",
+    "lastName" : "Muster",
+    "email" : "mmuster@web.de"
+  },
+  "access" : 1,
+  "songs" : [ {
+    "id" : 8,
+    "title" : "Team",
+    "artist" : "Iggy Azalea",
+    "album" : "No Album",
+    "released" : 2016
+  }, {
+    "id" : 5,
+    "title" : "I Took a Pill in Ibiza",
+    "artist" : "Mike Posner",
+    "album" : "At Night, Alone.",
+    "released" : 2016
+  } ]
+}, {
+  "id" : 9,
+  "user" : {
+    "id" : 3,
+    "userId" : "mmuster",
+    "firstName" : "Maxime",
+    "lastName" : "Muster",
+    "email" : "mmuster@web.de"
+  },
+  "access" : 0,
+  "songs" : [ {
+    "id" : 1,
+    "title" : "Private Show",
+    "artist" : "Britney Spears",
+    "album" : "Glory",
+    "released" : 2016
+  }, {
+    "id" : 5,
+    "title" : "I Took a Pill in Ibiza",
+    "artist" : "Mike Posner",
+    "album" : "At Night, Alone.",
+    "released" : 2016
+  }, {
+    "id" : 9,
+    "title" : "Mom",
+    "artist" : "Meghan Trainor, Kelli Trainor",
+    "album" : "Thank You",
+    "released" : 2016
+  } ]
+} ]

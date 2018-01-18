@@ -1,18 +1,28 @@
 package de.htwBerlin.ai.kbe.bean;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="song")
 @XmlRootElement(name = "song")
 public class Song {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String title;
 	private String artist;
 	private String album;
+	
+	@Column(name = "release_year")
 	private Integer released;
 	
 	public Song () {	}
@@ -25,10 +35,14 @@ public class Song {
 		private String album;
 		private Integer released;
 		
-		public Builder(Integer id, String title)
+		public Builder(String title)
 		{
-			this.id = id;
 			this.title = title;
+		}
+		
+		public Builder id(Integer id) {
+			this.id = id;
+			return this;
 		}
 		
 		public Builder artist(String artist){

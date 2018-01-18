@@ -55,6 +55,11 @@
             <version>2.26</version>
         </dependency>
         <dependency>
+    	<groupId>org.glassfish.jersey.media</groupId>
+   		<artifactId>jersey-media-jaxb</artifactId>
+    	<version>2.26</version>
+		</dependency>
+        <dependency>
             <groupId>org.glassfish.jersey.test-framework.providers</groupId>
             <artifactId>jersey-test-framework-provider-jdk-http</artifactId>
             <version>2.26</version>

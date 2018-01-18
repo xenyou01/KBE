@@ -9,6 +9,7 @@ public class Token {
 	
 	private Token() {
 		tokens = new ConcurrentHashMap<>();
+		tokens.put("me", "[B@521d7602");
 	}
 	
 	public static Token getInstance() {

@@ -3,6 +3,7 @@ package de.htwBerlin.ai.kbe.services;
 import java.util.Collection;
 import java.util.List;
 
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.NoResultException;
@@ -21,10 +22,14 @@ import org.glassfish.hk2.api.Factory;
 
 import de.htwBerlin.ai.kbe.bean.User;
 import de.htwBerlin.ai.kbe.storage.Token;
+import de.htwBerlin.ai.kbe.storage.UsersDAO;
 
 
 @Path("/auth")
 public class AuthServiceEndpoint {
+	
+	@Inject
+	UsersDAO userStore;
 	
 	@GET
 	@Produces(MediaType.TEXT_PLAIN)
@@ -34,24 +39,14 @@ public class AuthServiceEndpoint {
 		String chekforToken = Token.getInstance().getToken(user_id);
 		if(chekforToken != null)
 			return Response.status(Response.Status.OK).entity(chekforToken).build();
-		EntityManagerFactory factory = Persistence.createEntityManagerFactory("songsDB-PU");
-		EntityManager em = factory.createEntityManager();
 		try {
-			em.getTransaction().begin();
-			Query q = em.createQuery("SELECT u FROM User u where userId='" + user_id+"'");
-			User user = (User) q.getSingleResult();
+			User user = userStore.findUserByUserId(user_id);
 			if(user == null)
 				return Response.status(Response.Status.FORBIDDEN).entity("User doesn't exist").build();
 			String token = Token.getInstance().createToken(user_id);
 			return Response.status(Response.Status.OK).entity(token).build();
-		} catch (NoResultException e) {
-			return Response.status(Response.Status.FORBIDDEN).entity("User doesn't exist").build();
-		} 
-		catch (Exception e) {
+		}catch (Exception e) {
 			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("An internal error has occured. please try again.").build();
-		}finally {
-			em.close();
-			factory.close();
 		}
 	}
 
