@@ -1,6 +1,6 @@
 package de.htwBerlin.ai.kbe.storage;
 
-import java.security.SecureRandom;
+import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class Token {
@@ -19,10 +19,8 @@ public class Token {
 	}
 	
 	public String createToken(String userId) {
-		SecureRandom random = new SecureRandom();
-		byte bytes[] = new byte[200];
-		random.nextBytes(bytes);
-		String token = bytes.toString();
+		String token = UUID.randomUUID().toString();
+		token = token.replaceAll("-", "");
 		tokens.put(userId, token);
 		return token;
 	}

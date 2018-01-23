@@ -13,7 +13,7 @@ public interface SongsDAO {
 	
 	public Integer addSong(Song song);
 	
-	public boolean updateSong(Song song);
+	public boolean updateSong(Integer id, Song song);
 	
 	public Song deleteSong(Integer id);
 

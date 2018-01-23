@@ -16,15 +16,13 @@ public class SongListDAOImpl implements SongListDAO {
 	EntityManagerFactory factory = Persistence.createEntityManagerFactory("songsDB-PU");
 
 	@Override
-	public SongList getSongListById(Integer id, String userId, int access) {
+	public SongList getSongListById(Integer id) {
 		EntityManager em = factory.createEntityManager();
 		SongList songList = null;
 		try {
 			songList = em.find(SongList.class, id);
 			if((songList == null))
 				return null;
-			if (!songList.getUser().getUserId().equals(userId) || (songList.getAccess() < access))
-				throw new IllegalAccessError();
 			return songList;
 		} finally {
 			em.close();
@@ -32,10 +30,16 @@ public class SongListDAOImpl implements SongListDAO {
 	}
 
 	@Override
-	public Collection<SongList> getAllSongLists(Integer userId, int access) {
+	public Collection<SongList> getAllSongLists(Integer userId, String access) {
 		EntityManager em = factory.createEntityManager();
 		try {
-			TypedQuery<SongList> list = em.createQuery("select sl from SongList sl where owner = " + userId + " and access >= " + access, SongList.class);
+			TypedQuery<SongList> list;
+			if(access.equals("private"))
+				list = em.createQuery("select sl from SongList sl where owner = " + userId, SongList.class);
+			else if(access.equals("public"))
+				list = em.createQuery("select sl from SongList sl where owner = " + userId + " and access = '" + access + "'", SongList.class);
+			else
+				return null;
 			return list.getResultList();
 		} finally {
 			em.close();
@@ -52,7 +56,7 @@ public class SongListDAOImpl implements SongListDAO {
 			return list.getId();
 		} catch (Exception e) {
 			em.getTransaction().rollback();
-			throw new PersistenceException();
+			throw e;
 		}finally {
 			em.close();
 		}
@@ -64,7 +68,7 @@ public class SongListDAOImpl implements SongListDAO {
 		SongList list = null;
 		try {
 			list = em.find(SongList.class, id);
-			if(!list.getUser().getUserId().equals(userId))
+			if(!list.getUserId().equals(userId))
 				throw new IllegalAccessError();
 			em.getTransaction().begin();
 			em.remove(list);

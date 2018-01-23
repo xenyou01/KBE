@@ -53,9 +53,24 @@ public class SongsDAOImpl implements SongsDAO {
 	}
 
 	@Override
-	public boolean updateSong(Song song) {
-		// Not yet Implemented
-		return false;
+	public boolean updateSong(Integer id, Song song) {
+		EntityManager em = factory.createEntityManager();
+		try {
+			Song existingSong = em.find(Song.class, id);
+			if(existingSong == null)
+				return false;
+			song.setId(id);
+			existingSong = song;
+			em.getTransaction().begin();
+			em.merge(existingSong);
+			em.getTransaction().commit();
+			return true;
+		} catch (Exception e) {
+			em.getTransaction().rollback();
+			throw new PersistenceException();
+		}finally {
+			em.close();
+		}
 	}
 
 	@Override
@@ -64,6 +79,8 @@ public class SongsDAOImpl implements SongsDAO {
 		Song song = null;
 		try {
 			song = em.find(Song.class, id);
+			if(song == null)
+				return null;
 			em.getTransaction().begin();
 			em.remove(song);
 			em.getTransaction().commit();

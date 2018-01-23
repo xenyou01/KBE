@@ -3,6 +3,7 @@ package de.htwBerlin.ai.kbe.services;
 import java.util.Collection;
 
 import javax.inject.Inject;
+import javax.persistence.PersistenceException;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -46,7 +47,7 @@ public class SongWebService {
 		if(song != null){
 			return Response.ok(song).build();
 		}
-		return Response.status(Response.Status.NOT_FOUND).entity("No Song with the given ID").build();
+		return Response.status(Response.Status.NOT_FOUND).build();
 	}
 	
 	@POST
@@ -54,14 +55,18 @@ public class SongWebService {
 	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	@Produces(MediaType.TEXT_PLAIN)
 	public Response addSong(Song song){
-		if(song.getTitle() == null){
-			return Response.status(Response.Status.NOT_ACCEPTABLE).entity("The title should be set!").build();
+		if(song == null || song.getTitle() == null || song.getAlbum()== null || song.getArtist()==null||song.getReleased()==null){
+			return Response.status(Response.Status.NOT_ACCEPTABLE).entity("All fields should be set!").build();
 		}
 		song.setId(null);
-		Integer id = songStore.addSong(song);
-		if(id == null)
-			return Response.status(Response.Status.CONFLICT).entity("!! A song with the same id already exist !!").build();
-		return Response.status(Response.Status.CREATED).entity(id).build();
+		try {
+			Integer id = songStore.addSong(song);
+			if(id == null)
+				return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("error here???????????").build();
+			return Response.status(Response.Status.CREATED).entity(id).build();
+		} catch (Exception e) {
+			return Response.serverError().entity("Error while uploadind the song. Please try again").build();
+		}
 	}
 	
 	@PUT
@@ -70,23 +75,32 @@ public class SongWebService {
 	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	public Response updateSong(@PathParam("id") Integer id, Song song)
 	{
-		song.setId(id);
-		if(song.getTitle() == null)
+		if(song == null || id ==null || song.getTitle() == null || song.getAlbum()== null || song.getArtist()==null||song.getReleased()==null)
 			return Response.status(Response.Status.NOT_ACCEPTABLE).build();
-		boolean existingSong = SongStore.getInstance().updateSong(song);
-		if(!existingSong){
-			return Response.status(Response.Status.NOT_FOUND).build();
+		try {
+			boolean existingSong = songStore.updateSong(id, song);
+			if(!existingSong){
+				return Response.status(Response.Status.NOT_FOUND).build();
+			}
+			return Response.status(Response.Status.NO_CONTENT).build();
+		} catch (Exception e) {
+			return Response.serverError().build();
 		}
-		return Response.status(Response.Status.NO_CONTENT).build();
 	}
 	
 	@DELETE
 	@Secured
 	@Path("/{id}")
 	public Response deleteSong(@PathParam("id") Integer id){
-		Song deletedSong = songStore.deleteSong(id);
-		if(deletedSong == null)
-			return Response.status(Response.Status.NOT_FOUND).build();
-		return Response.status(Response.Status.NO_CONTENT).build();
+		if(id == null)
+			return Response.status(Response.Status.NOT_ACCEPTABLE).build();
+		try {
+			Song deletedSong = songStore.deleteSong(id);
+			if(deletedSong == null)
+				return Response.status(Response.Status.NOT_FOUND).build();
+			return Response.status(Response.Status.NO_CONTENT).build();
+		} catch (Exception e) {
+			return Response.serverError().build();
+		}
 	}
 }

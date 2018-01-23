@@ -6,9 +6,9 @@ import de.htwBerlin.ai.kbe.bean.SongList;
 
 public interface SongListDAO {
 	
-	public SongList getSongListById(Integer id, String userId, int access);
+	public SongList getSongListById(Integer id);
 	
-	public Collection<SongList> getAllSongLists(Integer userId, int access);
+	public Collection<SongList> getAllSongLists(Integer userId, String access);
 	
 	public Integer addSongList(SongList list);
 	

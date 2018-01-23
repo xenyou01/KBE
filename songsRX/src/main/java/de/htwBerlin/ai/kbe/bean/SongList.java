@@ -18,9 +18,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 @Entity
 @Table(name = "songlist")
@@ -30,10 +30,12 @@ public class SongList {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	private Integer access;
+	
+	private String access;
 	
 	@ManyToOne
 	@JoinColumn(name = "owner")
+	@JsonIgnore
 	private User user;
 
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
@@ -43,14 +45,13 @@ public class SongList {
 		foreignKey = @ForeignKey(name = "id"),
 		inverseForeignKey = @ForeignKey(name = "id")
 	)
-	@JsonIgnore
 	private Set<Song> songs;
 	
 	public SongList() {
 		songs = new HashSet<Song>();
 	}
 	
-	public SongList(User user, Integer access, Collection<Song> songs) {
+	public SongList(User user, String access, Collection<Song> songs) {
 		this();
 		this.user = user;
 		this.access = access;
@@ -65,13 +66,13 @@ public class SongList {
 		this.songs.addAll(songs);
 	}
 
-	/*public void addSongs(Collection<Song> songs) {
+	public void addSongs(Collection<Song> songs) {
 		this.songs.addAll(songs);
-	}*/
+	}
 	
-	/*public void addSongs(Song song) {
+	public void addSongs(Song song) {
 		this.songs.add(song);
-	}*/
+	}
 
 	public Integer getId() {
 		return id;
@@ -81,19 +82,20 @@ public class SongList {
 		this.id = id;
 	}
 
-	public User getUser() {
-		return user;
+	@XmlElement(name = "owner-id")
+	public String getUserId() {
+		return user.getUserId();
 	}
 	
 	public void setUser(User user) {
 		this.user = user;
 	}
 
-	public Integer getAccess() {
+	public String getAccess() {
 		return access;
 	}
 	
-	public void setAccess(Integer access) {
+	public void setAccess(String access) {
 		this.access = access;
 	}
 	

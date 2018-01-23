@@ -68,13 +68,15 @@ public class SongListWebService {
 			return Response.status(SERVER_ERR).build();
 		}
 		Collection<SongList> list = null;
-		int access = 0;
+		String access = "private";
 		if(!isSameUser(userId, token)) {
-			access = 1;
+			access = "public";
 		}
 		try {
 			list = songListStore.getAllSongLists(oneUser.getId(), access);
-			return Response.status(OK).entity(list).build();
+			GenericEntity<Collection<SongList>> result = new GenericEntity<Collection<SongList>>(list) {};
+			return Response.status(OK).entity(result).build();
+			//return Response.status(OK).entity(list).build();
 		} catch (Exception e) {
 			return Response.serverError().build();
 		}
@@ -95,19 +97,15 @@ public class SongListWebService {
 		} catch (PersistenceException e) {
 			return Response.status(SERVER_ERR).build();
 		}
-		int access = 0;
 		SongList list = null;
-		if(!isSameUser(userId, token))
-			access = 1;
 		try {
-			list = songListStore.getSongListById(listId, userId, access);
+			list = songListStore.getSongListById(listId);
 			if(list == null)
 				return Response.status(NOT_FOUND).build();
+			if(!isSameUser(userId, token) && list.getAccess().equals("private"))
+				return Response.status(FORBIDDEN).build();
 			return Response.status(OK).entity(list).build();
-		} catch (IllegalAccessError e) {
-			return Response.status(FORBIDDEN).build();
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			return Response.serverError().build();
 		}
 	}
@@ -118,6 +116,11 @@ public class SongListWebService {
 	@Produces(MediaType.TEXT_PLAIN)
 	@Path("/{userId}/songLists")
 	public Response createSongList(@PathParam("userId") String userId, @Context HttpHeaders headers, @Context UriInfo location, SongList songList) {
+		
+		if(songList == null || songList.getAccess() == null)
+			return Response.status(Response.Status.NOT_ACCEPTABLE).build();
+		if(!songList.getAccess().equals("private") && !songList.getAccess().equals("public"))
+			return Response.status(Response.Status.NOT_ACCEPTABLE).entity("Access : private or public, please check your values").build();
 		
 		String token = headers.getHeaderString(HttpHeaders.AUTHORIZATION);
 		User oneUser = null;
@@ -132,11 +135,15 @@ public class SongListWebService {
 			return Response.status(FORBIDDEN).entity("You can not create a playlist for a different user!").build();
 		oneUser.addSongList(songList);
 		songList.setUser(oneUser);
+		songList.setId(null);
 		try {
 			Integer newId = songListStore.addSongList(songList);
 			return Response.created(location.getAbsolutePathBuilder().path(newId.toString()).build()).build();
 		} catch (ConstraintViolationException e) {
 			return Response.status(Response.Status.BAD_REQUEST).entity("Please check your request Body!").build();
+		}
+		catch (PersistenceException e) {
+			return Response.status(Response.Status.BAD_REQUEST).entity("!!!!!!!!Make sure that all songs in your list already exist in the db!!!!!!!!!").build();
 		}
 		catch (Exception e) {
 			e.printStackTrace();
