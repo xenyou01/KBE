@@ -3,6 +3,7 @@ package de.htwBerlin.ai.kbe.services;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.net.URI;
 import java.util.Collection;
 import java.util.Set;
 
@@ -115,7 +116,7 @@ public class SongListWebService {
 	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	@Produces(MediaType.TEXT_PLAIN)
 	@Path("/{userId}/songLists")
-	public Response createSongList(@PathParam("userId") String userId, @Context HttpHeaders headers, @Context UriInfo location, SongList songList) {
+	public Response createSongList(@PathParam("userId") String userId, @Context HttpHeaders headers, @Context UriInfo path, SongList songList) {
 		
 		if(songList == null || songList.getAccess() == null)
 			return Response.status(Response.Status.NOT_ACCEPTABLE).build();
@@ -138,7 +139,8 @@ public class SongListWebService {
 		songList.setId(null);
 		try {
 			Integer newId = songListStore.addSongList(songList);
-			return Response.created(location.getAbsolutePathBuilder().path(newId.toString()).build()).build();
+			URI location = path.getAbsolutePathBuilder().path(newId.toString()).build();
+			return Response.created(location).entity(location.toString()).build();
 		} catch (ConstraintViolationException e) {
 			return Response.status(Response.Status.BAD_REQUEST).entity("Please check your request Body!").build();
 		}
