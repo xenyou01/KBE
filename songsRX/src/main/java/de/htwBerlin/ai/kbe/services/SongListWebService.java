@@ -171,8 +171,11 @@ public class SongListWebService {
 		if(!isSameUser(userId, token))
 			return Response.status(FORBIDDEN).entity("Sorry, you can not delete another users playlist!").build();
 		try {
-			songListStore.deleteSongList(listId, userId);
-			return Response.ok().build();
+			SongList list = songListStore.deleteSongList(listId, userId);
+			if (list == null) {
+				return Response.status(NOT_FOUND).build();
+			}
+			return Response.noContent().build();
 		} catch (IllegalAccessError e) {
 			return Response.status(FORBIDDEN).entity("Sorry, you can not delete another users playlist!").build();
 		}

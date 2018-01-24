@@ -68,6 +68,8 @@ public class SongListDAOImpl implements SongListDAO {
 		SongList list = null;
 		try {
 			list = em.find(SongList.class, id);
+			if(list == null)
+				return null;
 			if(!list.getUserId().equals(userId))
 				throw new IllegalAccessError();
 			em.getTransaction().begin();
